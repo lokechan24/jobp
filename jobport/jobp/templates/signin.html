@@ -1,12 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in page</title>
-</head>
-<body>
-    <h1>Sign in page</h1>
-</body>
-</html>
-Sign in
+{% extends 'base.html' %}
+
+{% block title %}Sign In - Job Portal{% endblock %}
+
+{% block content %}
+<h1>Sign In</h1>
+<p>Sign in here.</p>
+<div class="container">
+    <h2 class="heading">Get Started</h2>
+    <form action="{% url 'signin' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="field" placeholder="Email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="field" placeholder="Password" required>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="agree" name="agree" required>
+            <label for="agree">I agree to the processing of <span>Personal data</span></label>
+        </div>
+        <button type="submit" class="btn">Sign In</button>
+    </form>
+    <div class="divider">Sign up with</div>
+    <div class="social-signin">
+        <center>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/logo.jpg' %}" alt="Google Sign-In" style="height: 32px;" class="img">
+            </a>
+        </center>
+    </div>
+</div>
+{% endblock %}
